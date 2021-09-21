@@ -1,12 +1,11 @@
 /* React */
-import { Suspense, PureComponent, createRef, Fragment } from 'react';
+import { Suspense, PureComponent, createRef } from 'react';
 
 /* Components */
-import { Loading, Timeout, NetworkStatus } from '@dist';
+import { Loading, Timeout } from '@dist';
 
 /* Librarys */
 import { connect } from 'react-redux';
-import { Offline, Online } from "react-detect-offline";
 import { trackWindowScroll } from 'react-lazy-load-image-component';
 
 /* JS */
@@ -20,7 +19,7 @@ import { mapStateToProps, mapDispatchToProps, renderPokemons } from '@redux/redu
 /* CSS */
 import '@css/pokemon/styles.pokemons.css';
 
-const errorTitle = 'Se produjo un error al obtener los datos del servidor. Por favor, verifica tu conexión a internet.'
+// const errorTitle = 'Se produjo un error al obtener los datos del servidor. Por favor, verifica tu conexión a internet.'
 
 class Pokemons extends PureComponent {
 

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { isEmptyArray } from '@assets/js/typeof';
 
 /* Types */
-import { SHOW_LOADING, HIDE_LOADING, GET_POKEMONS, GET_ALL_POKEMONS, ERROR_GETTING_ALL_POKEMONS } from '@redux/types';
+import { HIDE_LOADING, GET_POKEMONS, GET_ALL_POKEMONS, ERROR_GETTING_ALL_POKEMONS } from '@redux/types';
 
 /* Thunks */
 import limit from './_limit';
