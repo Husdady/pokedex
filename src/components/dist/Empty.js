@@ -8,15 +8,21 @@ const pokeball_style = {
 }
 
 class Empty extends Component {
+  static defaultProps = {
+    renderButton: true
+  }
   render() {
     return (
       <div id="not-found-pokemons" className="j-center">
         <div className="content">
           <p className="title">{this.props.title}</p>
-          <button onClick={this.props.goToSectionPokemons} id="go-to-section" className="border-none pointer">
-            <img src={pokeball} style={pokeball_style} alt="pokeball" />
-            <span>{this.props.buttonTitle}</span>
-          </button>
+          {
+            this.props.renderButton &&
+            <button onClick={this.props.goToSectionPokemons} id="go-to-section" className="border-none pointer">
+              <img src={pokeball} style={pokeball_style} alt="pokeball" />
+              <span>{this.props.buttonTitle}</span>
+            </button>
+          }
         </div>
       </div >
     );

@@ -1,25 +1,23 @@
 /* React */
-import { Suspense, PureComponent, createRef } from 'react';
+import { PureComponent, createRef } from 'react';
 
 /* Components */
-import { Loading, Timeout } from '@dist';
+import { Loading, Empty, Timeout } from '@dist';
 
 /* Librarys */
 import { connect } from 'react-redux';
 import { trackWindowScroll } from 'react-lazy-load-image-component';
 
 /* JS */
+import { isError, isEmptyArray } from '@assets/js/typeof';
 import { getKey } from '@assets/js/localStorage';
 import { SEARCH_POKEMON } from '@assets/js/keys';
-import { isError } from '@assets/js/typeof';
 
 /* Reducers */
 import { mapStateToProps, mapDispatchToProps, renderPokemons } from '@redux/reducers/pokemons';
 
 /* CSS */
 import '@css/pokemon/styles.pokemons.css';
-
-// const errorTitle = 'Se produjo un error al obtener los datos del servidor. Por favor, verifica tu conexión a internet.'
 
 class Pokemons extends PureComponent {
 
@@ -42,8 +40,9 @@ class Pokemons extends PureComponent {
     const not_found_value = value_pokemon_in_storage === null;
     if (!not_found_value && not_found_value.length > 0) {
       return this.props.searchPokemon(value_pokemon_in_storage);
+    } else {
+      this.props.getPokemons();
     }
-    this.props.getPokemons();
   }
 
   componentDidMount() {
@@ -57,14 +56,14 @@ class Pokemons extends PureComponent {
       return this.offlineComponent;
     } else if (loading) {
       return <Loading />
+    } else if (isEmptyArray(pokemons)) {
+      return <Empty title="No se han encontraron pokemones que concuerden con la búsqueda..." renderButton={false} />
     }
 
     const all_pokemons = renderPokemons(pokemons);
     return (
       <div className="container">
-        <Suspense fallback={<Loading />}>
-          <div id="pokemons">{all_pokemons}</div>
-        </Suspense>
+        <div id="pokemons">{all_pokemons}</div>
       </div>
     )
   }

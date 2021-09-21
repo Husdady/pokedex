@@ -34,8 +34,10 @@ class Search extends Component {
     const pk = this.state.pokemon;
     const pokemon_saved_in_search = getKey(SEARCH_POKEMON);
     if (pk.length > 0 && (pokemon_saved_in_search !== pk)) {
+      console.log('maitas2')
       this.props.searchPokemon(pk);
     } else if (pk.length === 0) {
+      console.log('maitas')
       this.props.getPokemons();
     }
     setKey(SEARCH_POKEMON, pk);

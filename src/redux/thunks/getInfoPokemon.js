@@ -10,7 +10,9 @@ const getPokemonProperties = pokemon => {
     experience: pokemon.base_experience,
     order: pokemon.order,
     stats: pokemon.stats,
-    moves: pokemon.moves.map(({move}) => move.name),
+    moves: pokemon.moves.map(({ move }) => move.name),
+    specialAbilities: pokemon.abilities.map(({ ability }) => ability.name),
+    heldItems: pokemon.held_items.map(({ held_item }) => held_item.name),
     height: pokemon.height,
     weight: pokemon.weight,
     types: pokemon.types.map(({ type }) => type.name)

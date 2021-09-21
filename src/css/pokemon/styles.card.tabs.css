@@ -16,31 +16,49 @@
   opacity: .3;
 }
 
-.card-tabs .tab-content #pokemon-moves {
+.card-tabs .tab-content #pokemon-moves,
+.card-tabs .tab-content #about-pokemon {
   width: 90%;
   margin: auto;
 }
 
-.card-tabs .tab-content #pokemon-moves .title-moves {
+.card-tabs .tab-content #pokemon-moves .title-moves,
+.card-tabs .tab-content #about-pokemon .title-about  {
   padding-bottom: 12px;
   padding-left: 5px;
   border-bottom: 1px solid #fff;
   margin-bottom: 12px;
+  line-height: 1.85;
 }
 
+.card-tabs .tab-content #about-pokemon .title-about:first-of-type {
+  margin-top: 0;
+}
+
+.card-tabs .tab-content #pokemon-moves #moves,
+.card-tabs .tab-content #about-pokemon {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.card-tabs .tab-content #about-pokemon .section .item,
+.card-tabs .tab-content #pokemon-moves #moves .pokemon-move {
+  text-transform: capitalize;
+}
+
+/* MOVES */
 .card-tabs .tab-content #pokemon-moves #moves {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 3px;
   font-size: .65rem;
-  max-height: 200px;
-  overflow-y: auto;
   width: 95%;
   margin: auto;
   padding: 0;
 }
 
-.card-tabs .tab-content #pokemon-moves #moves::-webkit-scrollbar {
+.card-tabs .tab-content #pokemon-moves #moves::-webkit-scrollbar,
+.card-tabs .tab-content #about-pokemon::-webkit-scrollbar {
   display: none;
 }
 
@@ -53,4 +71,21 @@
   list-style: none;
   word-break: break-all;
   padding: 5px 0;
+}
+
+/* ABOUT */
+.card-tabs .tab-content #about-pokemon .section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.card-tabs .tab-content #about-pokemon .section .item {
+  font-size: .8rem;
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.card-tabs .tab-content #about-pokemon .section:nth-of-type(2) {
+  line-height: 1.6;
 }

@@ -38,7 +38,7 @@ class CardTabs extends Component {
         img: about,
         altImg: 'about-pokemon',
         label: 'About',
-        component: <About />
+        component: <About specialAbilities={this.props.pokemon.specialAbilities} heldItems={this.props.pokemon.heldItems} all_locations={this.props.pokemon.all_locations} />
       }
     ]
   }

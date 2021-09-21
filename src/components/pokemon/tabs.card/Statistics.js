@@ -13,8 +13,8 @@ class Statistics extends Component {
       <Fragment>
         { showPokeballs && <Pokeballs pokemon={this.props.pokemon} />}
         <div className="text-center">
-          <h6 className="height">Height: {height}dm</h6>
-          <h6 className="weight">Weight: {weight}hg</h6>
+          <h6 className="weight">Peso: {weight}hg</h6>
+          <h6 className="height">Altura: {height}dm</h6>
         </div>
         <h4 className="pokemon_name">{name}</h4>
 

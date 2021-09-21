@@ -23,15 +23,15 @@ const getPokemons = () => {
       : [fetchSome];
 
     try {
-      const fetchUrls = promises.map(url => axios({ url, timeout: 20000 }));
+      const fetchUrls = promises.map(url => axios({ url, timeout: 15000 }));
       const urls = await Promise.all(fetchUrls);
       const results = urls.map(url => url.data.results);
       results.map(async pks => {
         const pokemons = await getInfoPokemon(pks);
         if (pokemons.length <= limit) {
-          pokemons !== some && dispatch({ type: GET_POKEMONS, pokemons })
+          pokemons !== some && dispatch({ type: GET_POKEMONS, pokemons });
         } else {
-          isEmptyArray(all) && dispatch({ type: GET_ALL_POKEMONS, pokemons })
+          isEmptyArray(all) && dispatch({ type: GET_ALL_POKEMONS, pokemons });
         }
         dispatch({ type: HIDE_LOADING });
       });

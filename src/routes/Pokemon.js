@@ -2,8 +2,8 @@
 import { Component } from 'react';
 
 /* Components */
-import Pokemon from '@pokemon/Card';
-import Loading from '@dist/Loading';
+import CardPokemon from '@pokemon/Card';
+import { Loading, Timeout } from '@dist';
 
 /* Librarys */
 import axios from 'axios';
@@ -15,54 +15,62 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getPokemonProperties } from '@redux/thunks/getInfoPokemon';
 
 /* JS */
-import { isEmptyObject } from '@assets/js/typeof';
+import { isError, isEmptyObject } from '@assets/js/typeof';
 
 /* CSS */
 import '@css/pokemon/styles.pokemon.css';
 
-class Info_Pokemon extends Component {
+class Pokemon extends Component {
   state = {
-    pokemon: {}
+    pokemon: {},
+    error: {}
   }
-  componentDidMount() {
+
+  getInfoPokemon = async () => {
     const { pokemon } = this.props.match.params;
-    axios({
-      url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`
-    })
-      .then(result => result.data)
-      .then(pk => {
-        axios({
-          url: `https://pokeapi.co/api/v2/characteristic/${pk.id}`
-        })
-          .then(result => result.data.descriptions[2])
-          .then(description => {
-            if (pk.name === pokemon) {
-              this.setState({ pokemon: { ...getPokemonProperties(pk), ...description } });
-            } else {
-              this.props.history.push('/pokemon-no-encontrado')
-            }
-          })
-          .catch(() => {
-            this.setState({ pokemon: getPokemonProperties(pk) });
-          })
-      })
-      .catch(() => this.props.history.push('/pokemon-no-encontrado'))
+    try {
+      const { data } = await axios({
+        url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
+        timeout: 15000
+      });
+      const { name, id, location_area_encounters } = data;
+      const promises = [
+        location_area_encounters,
+        `https://pokeapi.co/api/v2/characteristic/${id}`
+      ] 
+      const fetchUrls = promises.map(url => axios({ url, timeout: 15000 }));
+      const [locations, descriptions] = await Promise.all(fetchUrls);
+      const description = descriptions.data.descriptions[1];
+      const all_locations = locations.data.map(({ location_area }) => location_area.name);
+      if (name === pokemon) {
+        this.setState({ pokemon: { ...getPokemonProperties(data), ...description, all_locations } });
+      } else {
+        this.props.history.push('/pokemon-no-encontrado');
+      }
+    } catch (error) {
+      this.setState({ error });
+    }
+  }
+
+  componentDidMount() {
+    this.getInfoPokemon();
   }
 
   render() {
-    const isLoading = isEmptyObject(this.state.pokemon);
-    // if () {
-    //   return <p>maita</p>
-    // }
+
+    const { pokemon, error } = this.state;
+    const isLoading = isEmptyObject(pokemon);
 
     return (
       <div id="container-of-pokemon" className={isLoading ? '#' : this.state.pokemon.types[0]}>
         <Back />
         {
-          isLoading
+          isError(error)
+          ? <div className="container-timeout"><Timeout /></div>
+          : isLoading
             ? <Loading />
             : (
-              <Pokemon {...this.state.pokemon} showPokeballs={false} showTypes icon={null} showDescription showTabs />
+              <CardPokemon {...pokemon} showPokeballs={false} showTypes icon={null} showDescription showTabs />
             )
         }
 
@@ -71,7 +79,7 @@ class Info_Pokemon extends Component {
   }
 }
 
-export default Info_Pokemon;
+export default Pokemon;
 
 class Back extends Component {
   render() {

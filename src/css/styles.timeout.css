@@ -1,3 +1,8 @@
+.container-timeout {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, .6);
+}
+
 #timeout-connection {
   font-family: 'Press Start 2P', sans-serif;
   text-align: center;
@@ -32,4 +37,10 @@
 
 #timeout-connection .wrap-reconnecting {
   justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .container-timeout {
+    width: 70%;
+  }
 }

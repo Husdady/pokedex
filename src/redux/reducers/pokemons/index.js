@@ -1,5 +1,5 @@
-/* React */
-import { lazy } from 'react';
+/* Components */
+import Pokemon from '@pokemon/Card';
 
 /* Reducers */
 import my_pokemons from './my_pokemons';
@@ -10,8 +10,6 @@ import { GET_POKEMONS, GET_ALL_POKEMONS, SEARCH_POKEMON, ERROR_GETTING_ALL_POKEM
 
 /* Thunks */
 import { getPokemons, searchPokemon } from '@redux/thunks';
-
-const Pokemon = lazy(() => import('@pokemon/Card'));
 
 const initialState = {
   all: [],
@@ -50,7 +48,7 @@ const mapDispatchToProps = dispatch => {
 
 const renderPokemons = (pokemons, options) => {
   return pokemons.map((pokemon, i) => (
-    <Pokemon {...pokemon} {...options} key={pokemon.order || i} />
+    <Pokemon {...pokemon} {...options} key={pokemon.id || i} />
   ));
 }
 

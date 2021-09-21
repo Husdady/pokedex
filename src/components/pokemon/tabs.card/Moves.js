@@ -8,17 +8,20 @@ const img_style = {
 class Moves extends Component {
   constructor(props) {
     super(props);
-    this.moves = this.props.items.map((move, i) => (
-      <div className="align-center">
-        <img src={explosion} alt="explosion" style={img_style} />
-        <li className="pokemon-move">{move}</li>
-      </div>
-    ))
+    this.moves = this.props.items.map((move, i) => {
+      const title_move = move.replace(/-/g, ' ');
+      return (
+        <div key={i} className="align-center">
+          <img src={explosion} alt="explosion" style={img_style} />
+          <li className="pokemon-move">{title_move}</li>
+        </div>
+      )
+    })
   }
   render() {
     return (
       <div id="pokemon-moves">
-        <h5 className="title-moves">All pokemon skills:</h5>
+        <h5 className="title-moves">Todos las habilidades del Pokemón:</h5>
         <ul id="moves">
           {this.moves}
         </ul>

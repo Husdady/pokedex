@@ -1,7 +1,8 @@
 /* React */
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 
 /* Librarys */
+import LazyLoad from 'react-lazy-load';
 import { withRouter } from 'react-router-dom';
 
 /* Components */
@@ -40,12 +41,7 @@ class Card extends Component {
 
   showPokemonDetails = () => {
     const pokeUrl = `/${this.props.default_name}`
-    this.props.history.push({
-      pathname: pokeUrl,
-      state: {
-        currentPokemon: this.props.default_name
-      }
-    });
+    this.props.history.push(pokeUrl);
   }
 
   shouldComponentUpdate() {
@@ -58,8 +54,8 @@ class Card extends Component {
     const iconName = renderIcon(icon, this.icons);
 
     return (
-      <div className="pokemon">
-
+      <LazyLoad className="pokemon">
+        <Fragment>
         {iconName}
         <div className="j-center">
           <Image title={name} onClick={this.showPokemonDetails} className="pokemon_img pointer" url={img} name={altImg} />
@@ -85,8 +81,8 @@ class Card extends Component {
               />
             )
         }
-        
-      </div>
+        </Fragment>
+      </LazyLoad>
     );
   }
 }
