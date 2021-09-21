@@ -23,7 +23,7 @@ const getPokemons = () => {
       : [fetchSome];
 
     try {
-      const fetchUrls = promises.map(url => axios({ url, timeout: 15000 }));
+      const fetchUrls = promises.map(url => axios({ url, timeout: 20000 }));
       const urls = await Promise.all(fetchUrls);
       const results = urls.map(url => url.data.results);
       results.map(async pks => {

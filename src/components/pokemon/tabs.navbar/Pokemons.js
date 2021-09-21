@@ -52,11 +52,12 @@ class Pokemons extends PureComponent {
   render() {
 
     const { pokemons, error, loading } = this.props;
+    const value_pokemon_in_storage = getKey(SEARCH_POKEMON);
     if (isError(error)) {
       return this.offlineComponent;
     } else if (loading) {
       return <Loading />
-    } else if (isEmptyArray(pokemons)) {
+    } else if (value_pokemon_in_storage?.length > 0 && isEmptyArray(pokemons)) {
       return <Empty title="No se han encontraron pokemones que concuerden con la búsqueda..." renderButton={false} />
     }
 

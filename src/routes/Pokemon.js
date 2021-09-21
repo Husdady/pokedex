@@ -57,10 +57,8 @@ class Pokemon extends Component {
   }
 
   render() {
-
     const { pokemon, error } = this.state;
     const isLoading = isEmptyObject(pokemon);
-
     return (
       <div id="container-of-pokemon" className={isLoading ? '#' : this.state.pokemon.types[0]}>
         <Back />
@@ -73,7 +71,6 @@ class Pokemon extends Component {
               <CardPokemon {...pokemon} showPokeballs={false} showTypes icon={null} showDescription showTabs />
             )
         }
-
       </div>
     );
   }

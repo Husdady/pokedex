@@ -46,6 +46,7 @@ export default class Navbar extends Component {
       }
     ]
   }
+  goToSectionPokemons = () => this.refNavbar.current.handleShowContentTab('Pokemons')
   render() {
     const tabs = this.tabs.map((tab, i) => (
       <div label={tab.label} key={i} component={tab.component}>
