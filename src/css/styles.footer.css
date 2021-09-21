@@ -1,0 +1,22 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  text-align: center;
+  line-height: 3.5;
+  letter-spacing: 2px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: .85rem;
+}
+
+footer span {
+  font-size: 1.1rem;
+  margin-right: 3px;
+}
+
+footer #author {
+  margin-left: 4px;
+  color: var(--bs-yellow);
+}

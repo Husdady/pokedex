@@ -1,0 +1,35 @@
+#timeout-connection {
+  font-family: 'Press Start 2P', sans-serif;
+  text-align: center;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#timeout-connection .error {
+  font-size: 4rem;
+  margin: 0;
+}
+
+#timeout-connection .message {
+  width: 60%;
+  margin: 20px auto;
+  display: block;
+}
+
+#timeout-connection .reload-page {
+  margin-top: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 0;
+  font-size: .85rem;
+  padding: 10px 25px;
+  border-radius: 3px;
+  background-color: var(--bs-yellow);
+}
+
+#timeout-connection .wrap-reconnecting {
+  justify-content: center;
+}

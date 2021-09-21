@@ -1,0 +1,56 @@
+.card-tabs .tabs .tab-list {
+  padding: 0 0 10px;
+  margin: 0 auto 20px;
+  border-bottom: .5px solid var(--bs-gray-700);
+  overflow-x: initial;
+  overflow-y: initial;
+  justify-content: space-around;
+}
+
+.card-tabs .tabs .tab-list .tab-item.active {
+  padding-bottom: 5px;
+  box-shadow: none;
+}
+
+.card-tabs .tabs .tab-list .tab-item.desactive {
+  opacity: .3;
+}
+
+.card-tabs .tab-content #pokemon-moves {
+  width: 90%;
+  margin: auto;
+}
+
+.card-tabs .tab-content #pokemon-moves .title-moves {
+  padding-bottom: 12px;
+  padding-left: 5px;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 12px;
+}
+
+.card-tabs .tab-content #pokemon-moves #moves {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  font-size: .65rem;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 95%;
+  margin: auto;
+  padding: 0;
+}
+
+.card-tabs .tab-content #pokemon-moves #moves::-webkit-scrollbar {
+  display: none;
+}
+
+.card-tabs .tab-content #pokemon-moves #moves .wrap {
+  display: flex;
+  align-items: center;
+}
+
+.card-tabs .tab-content #pokemon-moves #moves .pokemon-move {
+  list-style: none;
+  word-break: break-all;
+  padding: 5px 0;
+}

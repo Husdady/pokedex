@@ -1,0 +1,31 @@
+#not-found-pokemons {
+  align-items: center;
+  font-family: 'Press Start 2P';
+  height: 450px;
+}
+
+#not-found-pokemons .content {
+  width: 100%;
+  text-align: center;
+}
+
+#not-found-pokemons .content .title {
+  width: 70%;
+  margin: 0 auto 25px;
+  color: rgba(0, 0, 0, .8);
+  line-height: 1.5;
+}
+
+#go-to-section {
+  padding: 15px 35px;
+  border-radius: 4px;
+  font-size: .85rem;
+  background-color: var(--bs-yellow);
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+#go-to-section:hover {
+  opacity: .6;
+}

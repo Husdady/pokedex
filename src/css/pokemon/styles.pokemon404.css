@@ -1,0 +1,87 @@
+.tm-page404 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -53%);
+  font-family: 'Press Start 2P', sans-serif;
+  text-align: center;
+  width: 100%;
+}
+
+.tm-page404 .error_404,
+.tm-page404 .error_title {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-size: calc(1.375rem + 1.5vw);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.tm-page404 .error_404 {
+  font-size: 5.5rem;
+  margin: 10px 0 -15px;
+}
+
+.tm-page404 .error_title {
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+.tm-page404 .error_description {
+  font-size: 1rem;
+  display: block;
+  width: 60%;
+  margin: auto;
+}
+
+.tm-page404 button {
+  border: none;
+  line-height: initial;
+  background-color: var(--bs-yellow);
+  padding: 15px 30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  margin: 20px auto 0;
+}
+
+.tm-page404 button span {
+  font-size: .8rem;
+  margin-bottom: -3px;
+}
+
+.tm-page404 button:hover {
+  opacity: .6;
+}
+
+@media (max-width: 1024px) {
+  .tm-page404 .error_404 {
+    font-size: 5rem;
+  }
+  .tm-page404 .error_title {
+    font-size: 1.9rem;
+  }
+  .tm-page404 .error_description {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .tm-page404 {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    padding: 10% 0;
+  }
+  .tm-page404 .error_404 {
+    font-size: 4.5rem;
+  }
+  .tm-page404 .error_title {
+    font-size: 1.75rem;
+  }
+  .tm-page404 .error_description {
+    font-size: .85rem;
+    width: 100%;
+  }
+}
