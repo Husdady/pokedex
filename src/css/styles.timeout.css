@@ -21,6 +21,7 @@
   width: 60%;
   margin: 20px auto;
   display: block;
+  line-height: 1.35;
 }
 
 #timeout-connection .reload-page {

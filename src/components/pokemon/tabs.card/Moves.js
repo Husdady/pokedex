@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-const explosion = require('@assets/img/card.tabs/explosion-2.webp').default;
+const explosion = require('@assets/img/card.tabs/explosion.webp').default;
 const img_style = {
   width: 20, height: 20, marginRight: 3
 }

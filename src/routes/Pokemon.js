@@ -28,28 +28,32 @@ class Pokemon extends Component {
 
   getInfoPokemon = async () => {
     const { pokemon } = this.props.match.params;
-    try {
-      const { data } = await axios({
-        url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
-        timeout: 15000
-      });
-      const { name, id, location_area_encounters } = data;
-      const promises = [
-        location_area_encounters,
-        `https://pokeapi.co/api/v2/characteristic/${id}`
-      ] 
-      const fetchUrls = promises.map(url => axios({ url, timeout: 15000 }));
-      const [locations, descriptions] = await Promise.all(fetchUrls);
-      const description = descriptions.data.descriptions[1];
-      const all_locations = locations.data.map(({ location_area }) => location_area.name);
-      if (name === pokemon) {
-        this.setState({ pokemon: { ...getPokemonProperties(data), ...description, all_locations } });
-      } else {
-        this.props.history.push('/pokemon-no-encontrado');
-      }
-    } catch (error) {
-      this.setState({ error });
-    }
+    axios({
+      url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
+      timeout: 15000
+    })
+      .then(({ data }) => {
+        const { name, id, location_area_encounters } = data;
+        const promises = [
+          location_area_encounters,
+          `https://pokeapi.co/api/v2/characteristic/${id}`
+        ];
+        const fetchUrls = promises.map(url => axios({ url, timeout: 15000 }));
+        Promise.all(fetchUrls)
+          .then(([locations, descriptions]) => {
+            const description = descriptions.data.descriptions[1];
+            const all_locations = locations.data.map(({ location_area }) => location_area.name);
+            if (name === pokemon) {
+              this.setState({ pokemon: { ...getPokemonProperties(data), ...description, all_locations } });
+            } else {
+              this.props.history.push('/pokemon-no-encontrado');
+            }
+          })
+          .catch(() => {
+            this.setState({ pokemon: { ...getPokemonProperties(data) } })
+          })
+      })
+      .catch(error => this.setState({ error }));
   }
 
   componentDidMount() {
@@ -64,12 +68,12 @@ class Pokemon extends Component {
         <Back />
         {
           isError(error)
-          ? <div className="container-timeout"><Timeout /></div>
-          : isLoading
-            ? <Loading />
-            : (
-              <CardPokemon {...pokemon} showPokeballs={false} showTypes icon={null} showDescription showTabs />
-            )
+            ? <div className="container-timeout"><Timeout onReconnect={this.getInfoPokemon} /></div>
+            : isLoading
+              ? <Loading />
+              : (
+                <CardPokemon {...pokemon} showPokeballs={false} showTypes icon={null} showDescription showTabs />
+              )
         }
       </div>
     );

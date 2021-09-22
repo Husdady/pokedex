@@ -10,8 +10,8 @@ import '@css/pokemon/styles.pokemons.css';
 import '@css/pokemon/styles.navbar.css';
 import '@css/pokemon/styles.card.tabs.css';
 
-const statistics = require('@assets/img/card.tabs/statistics.jpg').default;
-const moves = require('@assets/img/card.tabs/statistics.webp').default;
+const statistics = require('@assets/img/card.tabs/statistics.webp').default;
+const moves = require('@assets/img/card.tabs/moves.webp').default;
 const about = require('@assets/img/card.tabs/about.webp').default;
 
 const img_style = {

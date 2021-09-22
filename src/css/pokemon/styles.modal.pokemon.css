@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0, .85);
+  background-color: rgba(0, 0, 0, .85);
   z-index: 9999999999;
   display: flex;
   flex-wrap: wrap;
@@ -17,8 +17,7 @@
   font-family: 'Press Start 2P', sans-serif;
 }
 
-#close_modal,
-.modal-content .message {
+#close_modal, .modal-content .message {
   color: #fff;
 }
 
@@ -58,6 +57,10 @@
   font-weight: normal;
   width: 100%;
   margin: 0;
+}
+
+.modal-content .message #pk-name {
+  text-transform: capitalize;
 }
 
 .modal-content .default-message {

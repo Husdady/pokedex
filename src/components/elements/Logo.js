@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-const logo = require('@assets/img/pokedex.png').default;
+const logo = require('@assets/img/pokedex.webp').default;
 const logo_style = {
   width: '25%',
   minWidth: window.innerWidth >= 768 ? 270 : 250,

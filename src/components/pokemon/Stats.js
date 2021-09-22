@@ -5,12 +5,12 @@ import { Component } from 'react';
 import Stat from './accesories/Stat';
 
 /* Stats */
-const health = require('@assets/img/stats/health.png').default;
-const attack = require('@assets/img/stats/attack.png').default;
-const defense = require('@assets/img/stats/defense.png').default;
-const special_attack = require('@assets/img/stats/special-attack.png').default;
-const special_defense = require('@assets/img/stats/special-defense.png').default;
-const speed = require('@assets/img/stats/speed.png').default;
+const health = require('@assets/img/stats/health.webp').default;
+const attack = require('@assets/img/stats/attack.webp').default;
+const defense = require('@assets/img/stats/defense.webp').default;
+const special_attack = require('@assets/img/stats/special-attack.webp').default;
+const special_defense = require('@assets/img/stats/special-defense.webp').default;
+const speed = require('@assets/img/stats/speed.webp').default;
 
 const stats_icon = [
   {

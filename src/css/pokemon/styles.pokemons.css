@@ -46,6 +46,7 @@
   margin: auto;
   width: 80%;
   word-break: break-all;
+  text-transform: capitalize;
 }
 
 .pokeballs {
@@ -187,10 +188,7 @@
   #pokemons {
     grid-template-columns: repeat(1, 300px);
     justify-content: center;
-    gap: 30px 0;
-  }
-  .pokeballs {
-    margin: auto;
+    gap: 20px 0;
   }
   .pokemon_img {
     height: 265px;

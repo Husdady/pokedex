@@ -9,7 +9,7 @@ import my_favorites_pokemons from './my_favorites_pokemons';
 import { GET_POKEMONS, GET_ALL_POKEMONS, SEARCH_POKEMON, ERROR_GETTING_ALL_POKEMONS } from '@redux/types';
 
 /* Thunks */
-import { getPokemons, searchPokemon } from '@redux/thunks';
+import { getPokemons, getMorePokemons, searchPokemon } from '@redux/thunks';
 
 const initialState = {
   all: [],
@@ -24,9 +24,12 @@ const pokemons = (state = initialState, action) => {
     case GET_POKEMONS:
       return { ...state, some: action.pokemons, error: {} }
     case SEARCH_POKEMON:
-      return { ...state, some: action.pokemons.filter(pokemon => pokemon.default_name.includes(action.pokemon_name)), error: {} }
+      return { ...state, some: action.pokemons.filter(pokemon => {
+        const pk_name = pokemon.name.replace(/-/g, ' ').trim();
+        return pk_name.includes(action.pokemon_name);
+      }), error: {} }
     case ERROR_GETTING_ALL_POKEMONS:
-      return { some: [], error: action.error }
+      return { ...state, some: [], error: action.error }
     default:
       return state;
   }
@@ -41,8 +44,8 @@ const mapStateToProps = ({ pokemons, loading }) => {
 const mapDispatchToProps = dispatch => {
   return {
     getPokemons: () => dispatch(getPokemons()),
-    searchPokemon: name => dispatch(searchPokemon(name)),
-    sendError: () => dispatch({ type: ERROR_GETTING_ALL_POKEMONS, error: new Error('offline') })
+    getMorePokemons: i => dispatch(getMorePokemons(i)),
+    searchPokemon: name => dispatch(searchPokemon(name))
   }
 }
 

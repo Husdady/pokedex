@@ -40,7 +40,8 @@ class Card extends Component {
   }
 
   showPokemonDetails = () => {
-    const pokeUrl = `/${this.props.default_name}`
+    const pk_name = this.props.name.replace(/\s/g, '-').toLowerCase();
+    const pokeUrl = `/${pk_name}`;
     this.props.history.push(pokeUrl);
   }
 
@@ -49,17 +50,19 @@ class Card extends Component {
   }
 
   render() {
-    const { id, name, img, icon, editPokemon, types, showTypes, showTabs } = this.props;
+    const { id, order, name, img, icon, editPokemon, types, showTypes, showTabs } = this.props;
     const altImg = `pokemon-${name}`;
     const iconName = renderIcon(icon, this.icons);
 
     return (
-      <LazyLoad className="pokemon">
+      <LazyLoad height={485} className="pokemon">
         <Fragment>
         {iconName}
         <div className="j-center">
           <Image title={name} onClick={this.showPokemonDetails} className="pokemon_img pointer" url={img} name={altImg} />
         </div>
+
+        <span className="pokemon_order">#{order}</span>
 
         {showTypes && <Types items={types} />}
 

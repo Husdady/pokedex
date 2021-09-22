@@ -2,7 +2,7 @@
 import { Component, Suspense, lazy, Fragment } from 'react';
 
 /* Components */
-import Footer from '@dist/Footer';
+import Footer from '@elements/Footer';
 
 /* Librarys */
 import {

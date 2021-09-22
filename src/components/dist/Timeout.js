@@ -24,7 +24,8 @@ class Timeout extends Component {
 
   static defaultProps = {
     status: 408,
-    title: 'Se agotó el tiempo de conexión, vuelve a intentarlo más tarde o intenta recargar la página.'
+    title: 'Se agotó el tiempo de conexión, vuelve a intentarlo más tarde o intenta recargar la página.',
+    renderButton: true
   }
 
   state = {
@@ -34,29 +35,41 @@ class Timeout extends Component {
   showLoading = () => this.setState({ loading: true });
   hideLoading = () => this.setState({ loading: false });
 
+  onReconnect = () => {
+    this.showLoading();
+    this.props.onReconnect();
+    setTimeout(this.hideLoading, 10000);
+  }
+
   render() {
+    const { title, status, renderButton } = this.props;
     return (
       <div id="timeout-connection">
         <div className="wrap">
-          <h2 className="error">{this.props.status}</h2>
-          <span className="message">{this.props.title}</span>
-          <button onClick={this.props.onReconnect} className="flex reload-page pointer border-none">
-            {
-              this.state.loading
-                ? (
-                  <div className="wrap-reconnecting align-center">
-                    <div className="loading" style={styles.loading} />
-                    <span style={styles.reconnecting}>Reconectando...</span>
-                  </div>
-                )
-                : (
-                  <Fragment>
-                    <FontAwesomeIcon icon={faRedoAlt} size="lg" style={styles.icon} />
-                    <span style={styles.reconnecting}>Volver a cargar</span>
-                  </Fragment>
-                )
-            }
-          </button>
+          <h2 className="error">{status}</h2>
+          <span className="message">{title}</span>
+          {
+            renderButton
+            && (
+              <button onClick={this.onReconnect} className="flex reload-page pointer border-none">
+                {
+                  this.state.loading
+                    ? (
+                      <div className="wrap-reconnecting align-center">
+                        <div className="loading" style={styles.loading} />
+                        <span style={styles.reconnecting}>Reconectando...</span>
+                      </div>
+                    )
+                    : (
+                      <Fragment>
+                        <FontAwesomeIcon icon={faRedoAlt} size="lg" style={styles.icon} />
+                        <span style={styles.reconnecting}>Volver a cargar</span>
+                      </Fragment>
+                    )
+                }
+              </button>
+            )
+          }
         </div>
       </div>
     );

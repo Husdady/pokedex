@@ -74,9 +74,9 @@
 }
 
 /* ABOUT */
-.card-tabs .tab-content #about-pokemon .section {
-  margin-top: 20px;
-  text-align: center;
+
+.card-tabs .tab-content #about-pokemon .section:first-of-type .j-center {
+  justify-content: left;
 }
 
 .card-tabs .tab-content #about-pokemon .section .item {

@@ -208,7 +208,7 @@
 #container-of-pokemon .pokemon .pokemon_description {
   line-height: 1.75;
   width: 80%;
-  margin: 20px auto 0;
+  margin: 20px auto -5px;
 }
 
 #container-of-pokemon .stats {
@@ -221,11 +221,14 @@
 
 @media (max-width: 800px) {
   #container-of-pokemon {
-    height: 800px;
+    height: 850px;
   }
 }
 
 @media (max-width: 450px) {
+  #container-of-pokemon {
+    height: 900px;
+  }
   #container-of-pokemon .pokemon {
     width: 85%;
     min-width: initial;

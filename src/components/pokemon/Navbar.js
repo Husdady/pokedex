@@ -10,9 +10,9 @@ import { Pokemons, MyPokemons, Favorites } from './tabs.navbar';
 /* CSS */
 import '@css/pokemon/styles.navbar.css';
 
-const pokeball = require('@assets/img/tabs/pokeball.png').default;
-const pikachu = require('@assets/img/tabs/pikachu.png').default;
-const favorite = require('@assets/img/tabs/favorite.png').default;
+const pokeball = require('@assets/img/tabs/pokeball.webp').default;
+const pikachu = require('@assets/img/tabs/pikachu.webp').default;
+const favorite = require('@assets/img/tabs/favorite.webp').default;
 
 const img_style = {
   width: 30, height: 30, marginRight: 5

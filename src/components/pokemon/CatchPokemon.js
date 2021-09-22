@@ -15,9 +15,9 @@ import { getKey, setKey } from '@assets/js/localStorage';
 /* CSS */
 import '@css/pokemon/styles.modal.pokemon.css';
 
-const pokeball = require('@assets/img/pokeball-animation2.gif').default;
-const opened_pokeball = require('@assets/img/opened-pokeball.png').default;
-const catched_pokeball = require('@assets/img/pokeball-catch-animation.gif').default;
+const pokeball = require('@assets/img/game/pokeball-animation.gif').default;
+const opened_pokeball = require('@assets/img/game/opened-pokeball.webp').default;
+const catched_pokeball = require('@assets/img/game/pokeball-catch-animation.gif').default;
 
 const renderContent = (state, elements) => {
   switch (state) {
@@ -105,9 +105,7 @@ class Catch extends Component {
     return (
       <div className="modal">
         <Close onClose={this.closeModal} />
-        <div className="modal-content">
-          {content}
-        </div>
+        <div className="modal-content">{content}</div>
       </div>
     );
   }
@@ -121,7 +119,7 @@ class PokemonAlreadyCatched extends Component {
       <Fragment>
         <img id="pokemon-already-catched" src={this.props.pokemonImg} className="m-auto animate__animated animate__pulse animate__infinite	infinite" alt="pokeball-isalready-catched" />
         <h3 className="animate__animated animate__shakeY message text-center">
-          {this.props.name} ya ha sido atrapado!
+          <span id="pk-name">{this.props.name}</span> ya ha sido atrapado!
         </h3>
       </Fragment>
     )
@@ -134,7 +132,7 @@ class PokemonCatched extends Component {
       <Fragment>
         <img src={catched_pokeball} className="m-auto animate__animated animate__zoomInDown catched-pokeball" alt="pokeball-animated-catched" />
         <h3 className="animate__animated animate__zoomInDown message message-catched-pokemon text-center">
-          Has atrapado con éxito a {this.props.name}!, puedes ver el pokemón atrapado en la sección de Mis pokemones.
+          Has atrapado con éxito a <span id="pk-name">{this.props.name}</span>!, puedes ver el pokemón atrapado en la sección de Mis pokemones.
         </h3>
       </Fragment>
     )
@@ -147,7 +145,7 @@ class PokemonNotCatched extends Component {
       <Fragment>
         <img src={opened_pokeball} className="m-auto opened-pokeball" alt="pokeball-animated-not-catched" />
         <h3 className="animate__animated animate__fadeInUp message message-not-catched-pokemon text-center">
-          No pudiste atrapar a {this.props.name}, el pokemón ha huido!
+          No pudiste atrapar a <span id="pk-name">{this.props.name}</span>, el pokemón ha huido!
         </h3>
       </Fragment>
     )

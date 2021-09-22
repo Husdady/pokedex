@@ -47,6 +47,7 @@ button.scale:active {
 .j-center {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .text-center {
@@ -72,6 +73,14 @@ button.scale:active {
 .icon-opacity.active, .icon-opacity:hover {
   background-color: rgba(0, 0, 0, .1);
   border-radius: 50%;
+}
+
+.infinite-scroll-component {
+  overflow: initial !important;
+}
+
+.infinite-scroll-component::-webkit-scrollbar {
+  display: none;
 }
 
 .loading {

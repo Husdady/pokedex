@@ -1,8 +1,8 @@
 /* React */
-import { PureComponent, createRef } from 'react';
+import { Component } from 'react';
 
 /* Components */
-import { Loading, Empty, Timeout } from '@dist';
+import { Loading, Empty, Scroller, Timeout } from '@dist';
 
 /* Librarys */
 import { connect } from 'react-redux';
@@ -19,30 +19,24 @@ import { mapStateToProps, mapDispatchToProps, renderPokemons } from '@redux/redu
 /* CSS */
 import '@css/pokemon/styles.pokemons.css';
 
-class Pokemons extends PureComponent {
+const empty_pokemons_style = {
+  width: '80%',
+  fontSize: '1.25rem'
+}
+
+class Pokemons extends Component {
 
   constructor(props) {
     super(props);
-    this.refTimeout = createRef();
-    this.offlineComponent = <Timeout ref={this.refTimeout} onReconnect={this.reconnecting} />
-  }
-
-  reconnecting = () => {
-    this.refTimeout.current.showLoading();
-    this.showPokemons();
-    setTimeout(() => {
-      this.refTimeout.current?.hideLoading()
-    }, 10000);
+    this.offlineComponent = <Timeout onReconnect={this.showPokemons} />
   }
 
   showPokemons = () => {
     const value_pokemon_in_storage = getKey(SEARCH_POKEMON);
-    const not_found_value = value_pokemon_in_storage === null;
-    if (!not_found_value && not_found_value.length > 0) {
+    if (value_pokemon_in_storage?.length > 0) {
       return this.props.searchPokemon(value_pokemon_in_storage);
-    } else {
-      this.props.getPokemons();
     }
+    this.props.getPokemons();
   }
 
   componentDidMount() {
@@ -58,14 +52,14 @@ class Pokemons extends PureComponent {
     } else if (loading) {
       return <Loading />
     } else if (value_pokemon_in_storage?.length > 0 && isEmptyArray(pokemons)) {
-      return <Empty title="No se han encontraron pokemones que concuerden con la búsqueda..." renderButton={false} />
+      return <Empty title="No se han encontraron pokemones que concuerden con la búsqueda..." renderButton={false} titleStyle={empty_pokemons_style} />
     }
 
     const all_pokemons = renderPokemons(pokemons);
     return (
-      <div className="container">
+      <Scroller totalItems={pokemons.length}>
         <div id="pokemons">{all_pokemons}</div>
-      </div>
+      </Scroller>
     )
   }
 }
