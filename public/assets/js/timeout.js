@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default function timeout(promise) {
   const {
-    url, options, time = 10000,
+    url, options, time = 20000,
     error_message = 'Timeout Exceeded'
   } = promise;
   return new Promise((resolve, reject) => {
