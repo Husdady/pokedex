@@ -21,7 +21,7 @@ const getPokemons = () => {
       : [fetchSome];
 
     try {
-      const fetchUrls = promises.map(url => timeout({ url }));
+      const fetchUrls = promises.map(url => timeout({ url, time: 40000 }));
       const urls = await Promise.all(fetchUrls);
       const results = urls.map(url => url.data.results);
       results.map(async pks => {
