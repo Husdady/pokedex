@@ -16,7 +16,7 @@ const getPokemons = () => {
   return async (dispatch, getStore) => {
 
     const { all, some } = getStore().pokemons;
-    const promises = isEmptyArray(some)
+    const promises = isEmptyArray(all)
       ? [fetchSome, fetchAll]
       : [fetchSome];
 
