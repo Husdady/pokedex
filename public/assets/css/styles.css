@@ -116,3 +116,9 @@ button.scale:active {
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    height: 3px;
+  }
+}

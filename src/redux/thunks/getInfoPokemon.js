@@ -24,6 +24,7 @@ const getInfoPokemon = async pks => {
     const pokemons = results.map(pk => pk.data);
     return pokemons.map(pk => getPokemonProperties(pk));
   } catch (error) {
+    console.log('ERROR IS IN GET_INFO_POKEMONS')
     return error;
   }
 }

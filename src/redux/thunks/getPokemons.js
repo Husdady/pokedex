@@ -37,6 +37,7 @@ const getPokemons = () => {
         return pokemons;
       });
     } catch (error) {
+      console.log('ERROR IS IN GET_POKEMONS')
       dispatch({ type: ERROR_GETTING_ALL_POKEMONS, error });
     }
   }
