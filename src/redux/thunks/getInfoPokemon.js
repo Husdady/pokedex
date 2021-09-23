@@ -1,4 +1,4 @@
-import axios from 'axios';
+import timeout from '@assets/js/timeout';
 
 const getPokemonProperties = pokemon => {
   return {
@@ -19,7 +19,7 @@ const getPokemonProperties = pokemon => {
 
 const getInfoPokemon = async pks => {
   try {
-    const promises = pks.map(({ url }) => axios.get(url));
+    const promises = pks.map(({ url }) => timeout({ url }));
     const results = await Promise.all(promises);
     const pokemons = results.map(pk => pk.data);
     return pokemons.map(pk => getPokemonProperties(pk));

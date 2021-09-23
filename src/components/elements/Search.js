@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-/* API */
+/* Reducers */
 import { mapDispatchToProps } from '@redux/reducers/pokemons';
 
 /* JS */
 import { SEARCH_POKEMON } from '@assets/js/keys';
 import { getKey, setKey } from '@assets/js/localStorage';
+import { isEmptyArray } from '@assets/js/typeof';
 
 /* CSS */
 import '@css/styles.search.css';
@@ -44,12 +45,12 @@ class Search extends Component {
   handleChange = e => this.setState({ pokemon: e.target.value });
   
   render() {
-    const isLoading = this.props.loading === true;
+    const button_disabled = isEmptyArray(this.props.all_pokemons);
     return (
       <div id="search">
         <form onSubmit={this.handleSearchPokemon}>
           <input value={this.state.pokemon} onChange={this.handleChange} id="search_field" type="text" placeholder="Buscar pokemón..." />
-          <button id="search_button" className="pointer" disabled={isLoading} type="submit">
+          <button id="search_button" className="pointer" disabled={button_disabled} type="submit">
             <FontAwesomeIcon icon={faSearch} color="#312d98" />
           </button>
         </form>

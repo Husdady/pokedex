@@ -6,7 +6,6 @@ import CardPokemon from '@pokemon/Card';
 import { Loading, Timeout } from '@dist';
 
 /* Librarys */
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getPokemonProperties } from '@redux/thunks/getInfoPokemon';
 
 /* JS */
+import timeout from '@assets/js/timeout';
 import { isError, isEmptyObject } from '@assets/js/typeof';
 
 /* CSS */
@@ -28,17 +28,14 @@ class Pokemon extends Component {
 
   getInfoPokemon = async () => {
     const { pokemon } = this.props.match.params;
-    axios({
-      url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
-      timeout: 15000
-    })
+    timeout({ url: `https://pokeapi.co/api/v2/pokemon/${pokemon}` })
       .then(({ data }) => {
         const { name, id, location_area_encounters } = data;
         const promises = [
           location_area_encounters,
           `https://pokeapi.co/api/v2/characteristic/${id}`
         ];
-        const fetchUrls = promises.map(url => axios({ url, timeout: 15000 }));
+        const fetchUrls = promises.map(url => timeout({ url }));
         Promise.all(fetchUrls)
           .then(([locations, descriptions]) => {
             const description = descriptions.data.descriptions[1];

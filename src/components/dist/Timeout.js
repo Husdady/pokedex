@@ -35,10 +35,19 @@ class Timeout extends Component {
   showLoading = () => this.setState({ loading: true });
   hideLoading = () => this.setState({ loading: false });
 
+  timer = (func, ) => setTimeout(func, 5000);
+
   onReconnect = () => {
     this.showLoading();
-    this.props.onReconnect();
-    setTimeout(this.hideLoading, 10000);
+    this.maita = () => setTimeout(this.props.onReconnect, 500);
+    this.maita2 = () => setTimeout(this.hideLoading, 1000);
+    this.maita();
+    this.maita2();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.maita);
+    clearTimeout(this.maita2);
   }
 
   render() {

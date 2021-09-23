@@ -1,8 +1,9 @@
 /* React */
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
 /* Components */
-import { Loading, Empty, Scroller, Timeout } from '@dist';
+import Scroller from '@pokemon/Scroller';
+import { Loading, Empty, Timeout } from '@dist';
 
 /* Librarys */
 import { connect } from 'react-redux';
@@ -24,12 +25,7 @@ const empty_pokemons_style = {
   fontSize: '1.25rem'
 }
 
-class Pokemons extends Component {
-
-  constructor(props) {
-    super(props);
-    this.offlineComponent = <Timeout onReconnect={this.showPokemons} />
-  }
+class Pokemons extends PureComponent {
 
   showPokemons = () => {
     const value_pokemon_in_storage = getKey(SEARCH_POKEMON);
@@ -48,7 +44,7 @@ class Pokemons extends Component {
     const { pokemons, error, loading } = this.props;
     const value_pokemon_in_storage = getKey(SEARCH_POKEMON);
     if (isError(error)) {
-      return this.offlineComponent;
+      return <Timeout onReconnect={this.showPokemons} />;
     } else if (loading) {
       return <Loading />
     } else if (value_pokemon_in_storage?.length > 0 && isEmptyArray(pokemons)) {
