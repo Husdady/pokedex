@@ -19,7 +19,7 @@ const getPokemonProperties = pokemon => {
 
 const getInfoPokemon = async pks => {
   try {
-    const promises = pks.map(({ url }) => timeout({ url }));
+    const promises = pks.map(({ url }) => timeout({ url, time: 20000 }));
     const results = await Promise.all(promises);
     const pokemons = results.map(pk => pk.data);
     return pokemons.map(pk => getPokemonProperties(pk));

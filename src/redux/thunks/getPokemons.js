@@ -21,7 +21,7 @@ const getPokemons = () => {
       : [fetchSome];
 
     try {
-      const fetchUrls = promises.map(url => timeout({ url, time: 40000 }));
+      const fetchUrls = promises.map(url => timeout({ url }));
       const urls = await Promise.all(fetchUrls);
       const results = urls.map(url => url.data.results);
       results.map(async pks => {
@@ -37,7 +37,6 @@ const getPokemons = () => {
         return pokemons;
       });
     } catch (error) {
-      console.log('ERROR IS IN GET_POKEMONS')
       dispatch({ type: ERROR_GETTING_ALL_POKEMONS, error });
     }
   }

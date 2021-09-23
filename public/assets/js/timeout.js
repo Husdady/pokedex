@@ -5,7 +5,6 @@ export default function timeout(promise) {
     url, options, time = 10000,
     error_message = 'Timeout Exceeded'
   } = promise;
-  console.log(time)
   return new Promise((resolve, reject) => {
     const timeoutId = setTimeout(() => {
       reject(new Error(error_message))
