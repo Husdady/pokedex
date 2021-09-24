@@ -35,6 +35,10 @@
   color: #fff;
 }
 
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
 .modal-content .default-pokeball {
   width: 45%;
   min-width: 250px;
