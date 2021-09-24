@@ -15,10 +15,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'Press Start 2P', sans-serif;
-}
-
-.modal::-webkit-scrollbar {
-  display: none;
+  overflow-x: hidden;
 }
 
 #close_modal, .modal-content .message {
