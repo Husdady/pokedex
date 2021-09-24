@@ -31,7 +31,8 @@ class Card extends Component {
     showTypes: false,
     showDescription: false,
     showTabs: false,
-    shouldUpdate: false
+    shouldUpdate: false,
+    defaultHeight: 485
   }
 
   icons = {
@@ -50,12 +51,12 @@ class Card extends Component {
   }
 
   render() {
-    const { id, order, name, img, icon, editPokemon, types, showTypes, showTabs } = this.props;
+    const { id, order, name, img, icon, editPokemon, types, showTypes, showTabs, defaultHeight } = this.props;
     const altImg = `pokemon-${name}`;
     const iconName = renderIcon(icon, this.icons);
 
     return (
-      <LazyLoad height={485} className="pokemon">
+      <LazyLoad height={defaultHeight} className="pokemon">
         <Fragment>
         {iconName}
         <div className="j-center">

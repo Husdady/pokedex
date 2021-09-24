@@ -30,7 +30,8 @@ class Favorites extends Component {
     }
 
     const all_favorites_pokemons = renderPokemons(pokemons, {
-      showPokeballs: false, editPokemon: false, icon: 'trash'
+      showPokeballs: false, editPokemon: false, icon: 'trash',
+      defaultHeight: 'auto'
     });
 
     return (
