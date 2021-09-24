@@ -17,6 +17,10 @@
   font-family: 'Press Start 2P', sans-serif;
 }
 
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
 #close_modal, .modal-content .message {
   color: #fff;
 }
@@ -33,10 +37,6 @@
 .modal-content {
   margin: -3.5% 0 0;
   color: #fff;
-}
-
-.modal-content::-webkit-scrollbar {
-  display: none;
 }
 
 .modal-content .default-pokeball {
