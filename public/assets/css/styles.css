@@ -8,6 +8,10 @@
   --bs-green: #2F956D;
 }
 
+#root {
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
 }
