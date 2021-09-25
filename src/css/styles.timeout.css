@@ -45,3 +45,10 @@
     width: 70%;
   }
 }
+
+@media (max-width: 740px) {
+  #timeout-connection {
+    height: auto;
+    padding: 50px 0;
+  }
+}
